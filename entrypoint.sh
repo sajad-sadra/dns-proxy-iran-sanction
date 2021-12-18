@@ -8,6 +8,6 @@ sed -i "s/$/ $FILTER_IP/" filter.txt
 
 if [ -n "$OTHER_HOSTS_URL" ]; then
     wget $OTHER_HOSTS_URL -O others.txt
-
+fi
 
 exec "$@"
