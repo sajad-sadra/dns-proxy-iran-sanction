@@ -10,4 +10,6 @@ if [ -n "$OTHER_HOSTS_URL" ]; then
     wget $OTHER_HOSTS_URL -O others.txt
 fi
 
+awk ' { t = $1; $1 = $2; $2 = t; print; } ' *.txt > hosts
+
 exec "$@"

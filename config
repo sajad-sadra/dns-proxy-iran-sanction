@@ -1,7 +1,0 @@
-bind     0.0.0.0:53     
-proxy    8.8.8.8:53     
-timeout  2s             
-
-import /root/.updns/sanction.txt
-import /root/.updns/filter.txt
-import /root/.updns/others.txt
