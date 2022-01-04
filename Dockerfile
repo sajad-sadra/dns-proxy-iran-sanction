@@ -2,15 +2,15 @@ FROM ubuntu:22.04 as builder
 
 WORKDIR /app
 
-RUN apt update && apt install -y make gcc wget unzip && \
-wget https://github.com/vietor/dnsproxy/archive/refs/tags/1.1.1.zip && unzip 1.1.1.zip && cd dnsproxy-1.1.1 && make
-
+RUN apt update && apt install -y make gcc git && \
+git clone https://github.com/vietor/dnsproxy.git && \
+cd dnsproxy && make
 
 FROM ubuntu:22.04
 
 RUN apt update && apt install -y wget
 
-COPY --from=builder /app/src/dnsproxy /usr/local/bin/dnsproxy
+COPY --from=builder /app/dnsproxy/src/dnsproxy /usr/local/bin/dnsproxy
 
 COPY entrypoint.sh .
 
