@@ -18,4 +18,5 @@ ENTRYPOINT ["./entrypoint.sh"]
 
 CMD ["dnsproxy", "--hosts-file=/hosts"]
 
-HEALTHCHECK ["CMD", "drill", "google.com", "@127.0.0.1", "||", "exit", "1"]
+HEALTHCHECK  --interval=1m \
+  CMD drill google.com @127.0.0.1 || exit 1
