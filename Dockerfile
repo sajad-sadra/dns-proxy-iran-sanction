@@ -8,7 +8,7 @@ cd dnsproxy && make
 
 FROM ubuntu:22.04
 
-RUN apt update && apt install -y wget
+RUN apt update && apt install -y wget ldnsutils
 
 COPY --from=builder /app/dnsproxy/src/dnsproxy /usr/local/bin/dnsproxy
 
@@ -17,3 +17,5 @@ COPY entrypoint.sh .
 ENTRYPOINT ["./entrypoint.sh"]
 
 CMD ["dnsproxy", "--hosts-file=/hosts"]
+
+HEALTHCHECK ["CMD", "drill", "google.com", "@127.0.0.1", "||", "exit", "1"]
