@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm *.txt
+
 wget https://raw.githubusercontent.com/sajad-sadra/iran-domains-sanction/master/sanction.txt
 sed -i "s/$/ $SANCTION_IP/" sanction.txt
 
